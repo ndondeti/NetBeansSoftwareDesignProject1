@@ -10,6 +10,7 @@ package edu.asu.cse564.curd.gradebook.models;
  * @author Vivek
  */
 public class WorkItem {
+
     public String workItemName;
     public Float percentage;
 }

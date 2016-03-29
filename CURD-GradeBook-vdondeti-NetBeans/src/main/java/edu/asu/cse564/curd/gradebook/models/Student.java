@@ -6,11 +6,13 @@
 package edu.asu.cse564.curd.gradebook.models;
 
 import java.util.HashMap;
+
 /**
  *
  * @author Vivek
  */
-public class Student{
+public class Student {
+
     String name;
     HashMap<String, GradeItem> gradeItems;
 
@@ -18,45 +20,42 @@ public class Student{
         this.name = name;
         gradeItems = new HashMap<>();
     }
-    
-    public void addGradeItem(String gradeItem){
+
+    public void addGradeItem(String gradeItem) {
         this.gradeItems.put(gradeItem, null);
     }
-    
-    public void addGrade(GradeItem gradeItem)throws Exception{
-        if(gradeItems.containsKey(gradeItem.workItemName)){
-            if(gradeItems.get(gradeItem.workItemName) != null){
+
+    public void addGrade(GradeItem gradeItem) throws Exception {
+        if (gradeItems.containsKey(gradeItem.workItemName)) {
+            if (gradeItems.get(gradeItem.workItemName) != null) {
                 throw new Exception("WorkItemExists");
             }
             this.gradeItems.put(gradeItem.workItemName, gradeItem);
-        }
-        else {
+        } else {
             throw new Exception("NoWorkItem");
         }
     }
-    
-    public void updateGrade(GradeItem gradeItem)throws Exception{
-        if(gradeItems.containsKey(gradeItem.workItemName)){
+
+    public void updateGrade(GradeItem gradeItem) throws Exception {
+        if (gradeItems.containsKey(gradeItem.workItemName)) {
             throw new Exception("NoWorkItem");
-        }
-        else{
+        } else {
             gradeItems.put(gradeItem.workItemName, gradeItem);
         }
     }
-    
-    public GradeItem getGrade(String workItemName) throws Exception{
+
+    public GradeItem getGrade(String workItemName) throws Exception {
         GradeItem item = gradeItems.get(workItemName);
-        if(item == null){
+        if (item == null) {
             throw new Exception("NoWorkItem");
-        }
-        else{
+        } else {
             return item;
         }
     }
-    
-    public void deleteGrade(String workItemName) throws Exception{
+
+    public void deleteGrade(String workItemName) throws Exception {
         GradeItem item = gradeItems.get(workItemName);
-        if(item == null){
+        if (item == null) {
             throw new Exception("NoWorkItem");
         }
         gradeItems.put(workItemName, null);

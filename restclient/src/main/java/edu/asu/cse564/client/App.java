@@ -96,7 +96,7 @@ public class App {
         System.out.println(formatted);   
         
         //Sixth Exampple Trying to send an invalid message
-        System.out.println("Trying to add an invalid food item");
+        System.out.println("Trying to add an invalid food item where there is no description");
         food = new FoodItem();
         food.setCategory("Dinner");
         food.setCountry("GB");

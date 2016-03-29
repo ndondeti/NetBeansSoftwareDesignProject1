@@ -30,11 +30,16 @@ import javax.ws.rs.PUT;
 @Path("/gradebook")
 public class RestEndPoint {
 
-    private Gson gson = new Gson();
-    private JsonParser jsonBuilder = new JsonParser();
+    private Gson gson;
+    private JsonParser jsonBuilder;
 
     @Inject
     GradeBook gradeBook;
+
+    public RestEndPoint() {
+        gson = new Gson();
+        jsonBuilder = new JsonParser();
+    }
 
     @POST
     @Path("addClassPlan")
@@ -45,51 +50,47 @@ public class RestEndPoint {
             for (WorkItem workItem : setWorkItem.workItems) {
                 gradeBook.addGradingItem(workItem);
             }
-            return Response.status(201).build(); 
-        }
-        catch(Exception e){
+            return Response.status(201).build();
+        } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
     }
-    
+
     @POST
     @Path("addGrade/{studentName}")
-    public Response addGrade(@PathParam("studentName") String studentName, String addGrade){
+    public Response addGrade(@PathParam("studentName") String studentName, String addGrade) {
         JsonObject jsonData = jsonBuilder.parse(addGrade).getAsJsonObject();
         GradeItem gradeItem = gson.fromJson(jsonData, GradeItem.class);
-        try{
+        try {
             gradeBook.addGrade(studentName, gradeItem);
-            return Response.status(201).build(); 
-        }
-        catch(Exception e){
+            return Response.status(201).build();
+        } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
     }
-    
+
     @DELETE
     @Path("removeGrade/{studentName}/{workItem}")
     public Response removeGrade(@PathParam("studentName") String studentName,
-                                @PathParam("workItem")String workItem){
-        try{
+            @PathParam("workItem") String workItem) {
+        try {
             gradeBook.deleteGrade(studentName, workItem);
-            return Response.status(201).build(); 
-        }
-        catch(Exception e){
+            return Response.status(201).build();
+        } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
     }
-    
+
     @PUT
     @Path("updateGrade/{studentName}/{workItem}")
     public Response removeGrade(@PathParam("studentName") String studentName,
-            @PathParam("workItem")String workItem, String updateMessage){
+            @PathParam("workItem") String workItem, String updateMessage) {
         JsonObject jsonData = jsonBuilder.parse(updateMessage).getAsJsonObject();
         GradeItem gradeItem = gson.fromJson(jsonData, GradeItem.class);
-        try{
+        try {
             gradeBook.updateGrade(studentName, gradeItem);
-            return Response.status(201).build(); 
-        }
-        catch(Exception e){
+            return Response.status(201).build();
+        } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
     }
