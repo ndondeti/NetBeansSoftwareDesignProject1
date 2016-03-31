@@ -9,9 +9,7 @@ package edu.asu.cse564.curd.gradebook.models;
  *
  * @author Vivek
  */
-public class GradeItem {
-
-    public String workItemName;
+public class Grade {
     public Float grade;
     public String feedback;
 }

@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Student {
 
     String name;
-    HashMap<String, GradeItem> gradeItems;
+    HashMap<String, Grade> gradeItems;
 
     Student(String string) {
         this.name = name;
@@ -25,27 +25,30 @@ public class Student {
         this.gradeItems.put(gradeItem, null);
     }
 
-    public void addGrade(GradeItem gradeItem) throws Exception {
-        if (gradeItems.containsKey(gradeItem.workItemName)) {
-            if (gradeItems.get(gradeItem.workItemName) != null) {
+    public void addGrade(Grade gradeItem, String workItem) throws Exception {
+        if (gradeItems.containsKey(workItem)) {
+            if (gradeItems.get(workItem) != null) {
                 throw new Exception("WorkItemExists");
             }
-            this.gradeItems.put(gradeItem.workItemName, gradeItem);
+            this.gradeItems.put(workItem, gradeItem);
         } else {
             throw new Exception("NoWorkItem");
         }
     }
 
-    public void updateGrade(GradeItem gradeItem) throws Exception {
-        if (gradeItems.containsKey(gradeItem.workItemName)) {
+    public void updateGrade(String workItem, Grade grade) throws Exception {
+        if (!gradeItems.containsKey(workItem)) {
             throw new Exception("NoWorkItem");
         } else {
-            gradeItems.put(gradeItem.workItemName, gradeItem);
+            if (gradeItems.get(workItem) == null) {
+                throw new Exception("NoSubmission");
+            }
+            gradeItems.put(workItem, grade);
         }
     }
 
-    public GradeItem getGrade(String workItemName) throws Exception {
-        GradeItem item = gradeItems.get(workItemName);
+    public Grade getGrade(String workItemName) throws Exception {
+        Grade item = gradeItems.get(workItemName);
         if (item == null) {
             throw new Exception("NoWorkItem");
         } else {
@@ -54,7 +57,7 @@ public class Student {
     }
 
     public void deleteGrade(String workItemName) throws Exception {
-        GradeItem item = gradeItems.get(workItemName);
+        Grade item = gradeItems.get(workItemName);
         if (item == null) {
             throw new Exception("NoWorkItem");
         }

@@ -21,6 +21,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>REST Service</servlet-name>
-    <url-pattern>/test/*</url-pattern>
+    <url-pattern>/CSE564/*</url-pattern>
   </servlet-mapping>
 </web-app>

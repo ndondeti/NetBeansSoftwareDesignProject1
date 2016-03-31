@@ -44,21 +44,21 @@ public class GradeBook {
         }
     }
 
-    public void addGrade(String studentName, GradeItem gradeItem) throws Exception {
+    public void addGrade(String studentName, Grade gradeItem, String workItem) throws Exception {
         Student student = students.get(studentName);
         if (student == null) {
             throw new Exception("NoStudent");
         } else {
-            student.addGrade(gradeItem);
+            student.addGrade(gradeItem, workItem);
         }
     }
 
-    public void updateGrade(String studentName, GradeItem gradeItem) throws Exception {
+    public void updateGrade(String studentName, Grade grade, String workItem) throws Exception {
         Student student = students.get(studentName);
         if (student == null) {
             throw new Exception("NoStudent");
         } else {
-            student.updateGrade(gradeItem);
+            student.updateGrade(workItem, grade);
         }
     }
 
@@ -70,7 +70,7 @@ public class GradeBook {
         return student;
     }
 
-    public GradeItem getGrade(String studentName, String workItemName) throws Exception {
+    public Grade getGrade(String studentName, String workItemName) throws Exception {
         Student student = students.get(studentName);
         if (student == null) {
             throw new Exception("NoStudent");
