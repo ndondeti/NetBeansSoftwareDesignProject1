@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.asu.cse564</groupId>
-    <artifactId>GradeBookServer</artifactId>
+    <artifactId>GradeBook-Server</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>GradeBookServer</name>
+    <name>GradeBook-Server</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -60,7 +60,7 @@
     </dependencies>
 
     <build>
-        <finalName>GradeBookServer</finalName>
+        <finalName>GradeBook-Server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

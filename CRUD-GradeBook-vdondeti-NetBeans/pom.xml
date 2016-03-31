@@ -11,5 +11,6 @@
     <modules>
   	<module>../GradeBook-Server</module>
   	<module>../GradeBook-Models</module>
+        <module>../GradeBook-Client</module>
   </modules>
 </project>
