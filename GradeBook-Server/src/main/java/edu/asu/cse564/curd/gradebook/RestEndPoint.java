@@ -19,6 +19,7 @@ import edu.asu.cse564.curd.gradebook.content.GradeBook;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
+import javax.ws.rs.Produces;
 
 /**
  *
@@ -94,6 +95,7 @@ public class RestEndPoint {
     
     @GET
     @Path("grade/{studentName}/{workItem}")
+    @Produces("application/json")
     public Response getGrade(@PathParam("studentName") String studentName,
             @PathParam("workItem") String workItem) {
         try{

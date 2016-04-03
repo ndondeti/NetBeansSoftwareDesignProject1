@@ -14,4 +14,7 @@ import java.util.ArrayList;
 public class SetWorkItem {
 
     public ArrayList<WorkItem> workItems;
+    public SetWorkItem(){
+        workItems = new ArrayList<>();
+    }
 }
