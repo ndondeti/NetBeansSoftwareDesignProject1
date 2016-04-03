@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.asu.cse564.samples.crud.jaxb.utils;
+package edu.asu.cse564.client;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
