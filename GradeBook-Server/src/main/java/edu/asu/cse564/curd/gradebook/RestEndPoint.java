@@ -47,7 +47,8 @@ public class RestEndPoint {
             for (WorkItem workItem : setWorkItem.workItems) {
                 gradeBook.addGradingItem(workItem);
             }
-            return Response.status(201).build();
+            String success = "Added class plan";
+            return Response.status(201).entity(success).build();
         } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
@@ -61,7 +62,8 @@ public class RestEndPoint {
         Grade gradeItem = gson.fromJson(jsonData, Grade.class);
         try {
             gradeBook.addGrade(studentName, gradeItem, workItem);
-            return Response.status(201).build();
+            String success = "Added grade";
+            return Response.status(201).entity(success).build();
         } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
@@ -73,7 +75,8 @@ public class RestEndPoint {
             @PathParam("workItem") String workItem) {
         try {
             gradeBook.deleteGrade(studentName, workItem);
-            return Response.status(201).build();
+            String success = "Deleted grade";
+            return Response.status(200).entity(success).build();
         } catch (Exception e) {
             return Response.status(404).entity(e.getMessage()).build();
         }
@@ -87,7 +90,8 @@ public class RestEndPoint {
         Grade grade = gson.fromJson(jsonData, Grade.class);
         try {
             gradeBook.updateGrade(studentName, grade, workItem);
-            return Response.status(201).build();
+            String success = "Updated grade";
+            return Response.status(201).entity(success).build();
         } catch (Exception e) {
             return Response.status(400).entity(e.getMessage()).build();
         }
@@ -95,7 +99,6 @@ public class RestEndPoint {
     
     @GET
     @Path("grade/{studentName}/{workItem}")
-    @Produces("application/json")
     public Response getGrade(@PathParam("studentName") String studentName,
             @PathParam("workItem") String workItem) {
         try{

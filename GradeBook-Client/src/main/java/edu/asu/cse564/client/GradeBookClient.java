@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.asu.cse564.client;
 
 import com.google.gson.Gson;
@@ -19,34 +15,20 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Jersey REST client generated for REST resource:AppointmentResource
- * [Appointment]<br>
- * USAGE:
- * <pre>
- *        Appointment_CRUD_cl client = new Appointment_CRUD_cl();
- *        Object response = client.XXX(...);
- *        // do whatever with response
- *        client.close();
- * </pre>
- *
- * @author fcalliss
- */
-public class Appointment_CRUD_cl {
+public class GradeBookClient {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Appointment_CRUD_cl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GradeBookClient.class);
 
     private Gson gson;
     private JsonParser jsonBuilder;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/GradeBook-Server/CSE564/gradebook/";
 
-    public Appointment_CRUD_cl() {
+    public GradeBookClient() {
         LOG.info("Creating a Appointment_CRUD REST client");
         gson = new Gson();
         ClientConfig config = new DefaultClientConfig();
         client = Client.create(config);
-        //LOG.debug("webResource = {}", webResource.getURI());
     }
 
     public ClientResponse addClassPlan(SetWorkItem setWorkItem) throws UniformInterfaceException {
@@ -72,7 +54,7 @@ public class Appointment_CRUD_cl {
         WebResource webResource;
         webResource = client.resource(BASE_URI).path("grade/" + student + "/" + workItem);
         String message = gson.toJson(grade);
-        return webResource.type("application/json").post(ClientResponse.class, message);
+        return webResource.type("application/json").put(ClientResponse.class, message);
     }
 
     public ClientResponse getGrade(String student, String workItem) throws UniformInterfaceException {
