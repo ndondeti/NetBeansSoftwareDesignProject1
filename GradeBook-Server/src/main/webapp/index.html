@@ -1,10 +1,37 @@
 <!DOCTYPE html>
+
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+<title>SD Assignment2</title>
+</head>
+<body>
+
+    <h3>Software Design Assignment - 2</h3>
+    <h3>Author - Vivek Narsimha Dondeti</h3>
+
+<p>The client, server and the models are all Maven project. The CRUD-GradeBook-vdondeti-NetBeans is the parent project(POM project)
+The server is built using NetBeans and can be run on the glassfish server that comes along with NetBeans.
+The server endpoints are <br>
+1) http://localhost/GradeBook-Server/CSE564/Gradebook/student<br>
+2) http://localhost/GradeBook-Server/CSE564/Gradebook/addClassPlan<br>
+3) http://localhost/GradeBook-Server/CSE564/Gradebook/grade/{studentName}/{workItemName}<br><br>
+The first endpoint supports GET and POST, the second supports only POST and the third one supports GET, PUT, POST, DELETE</p>
+
+
+<p>Instructions for running the project.<br>
+    
+    1) Build the CRUD-GradeBook-vdondeti-NetBeans parent project. This will build all the other projects
+    1) The server has to be started first on the glassfish server.<br>
+    This can be done directly from NetBeans by right clicking on the restservice project.<br>
+    2) The client can be run as a java application. The main method is in the class App.java.</p>
+
+<p>The client has a series of test cases. They make requests to the server and print the xml recieved from the server on the console.<br>
+    The following are the test cases run by the client.<br>
+1) Get a FoodItem that exists in the FoodItems.xml file.<br>
+2) Adding a new FoodItem<br>
+3) Getting the FoodItem previously added.<br>
+4) Trying to add the same FoodItem again.<br>
+5) Trying to get a FoodItem that does not exist.<br>
+6) Trying to add an invalid FoodItem.</p>
+</body>
 </html>

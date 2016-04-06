@@ -29,9 +29,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author fcalliss
  */
-public class MainClass extends JFrame {
+public class GradeBookFrame extends JFrame {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MainClass.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GradeBookFrame.class);
 
     private JsonParser jsonBuilder;
 
@@ -59,8 +59,12 @@ public class MainClass extends JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GradeBookFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -75,7 +79,7 @@ public class MainClass extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainClass().setVisible(true);
+                new GradeBookFrame().setVisible(true);
             }
         });
     }
@@ -83,64 +87,13 @@ public class MainClass extends JFrame {
     /**
      * Creates new form Appointment_REST_UI
      */
-    public MainClass() {
+    public GradeBookFrame() {
         LOG.info("Creating a Appointment_REST_UI object");
         initComponents();
         gradeBookClient = new GradeBookClient();
         setWorkItem = new SetWorkItem();
         jsonBuilder = new JsonParser();
         gson = new Gson();
-    }
-
-    private String convertFormToXMLString() {
-        Appointment appointment = new Appointment();
-        //if (!jTextField1.getText().equals("")){
-        //    appointment.setId(Integer.parseInt(jTextField1.getText()));
-        //}
-        appointment.setTitle(jTextField2.getText());
-        appointment.setPriority(Integer.parseInt(jTextField4.getText()));
-
-        String xmlString = Converter.convertFromObjectToXml(appointment, appointment.getClass());
-
-        return xmlString;
-    }
-
-    private void populateForm(ClientResponse clientResponse) {
-        LOG.info("Populating the UI with the Appointment info");
-
-        String entity = clientResponse.getEntity(String.class);
-
-        LOG.debug("The Client Response entity is {}", entity);
-
-        try {
-            if ((clientResponse.getStatus() == Response.Status.OK.getStatusCode())
-                    || (clientResponse.getStatus() == Response.Status.CREATED.getStatusCode())) {
-                Appointment appointment = (Appointment) Converter.convertFromXmlToObject(entity, Appointment.class);
-                LOG.debug("The Client Response appointment object is {}", appointment);
-
-                // Populate Appointment info
-                //jTextField1.setText(Integer.toString(appointment.getId()));
-                jTextField2.setText(appointment.getTitle());
-                jTextField4.setText(Integer.toString(appointment.getPriority()));
-            } else {
-                jTextField2.setText("");
-                jTextField4.setText("");
-            }
-
-            // Populate HTTP Header Information
-            jTextField3.setText(Integer.toString(clientResponse.getStatus()));
-            //jTextField6.setText(clientResponse.getType().toString());
-
-            // The Location filed is only populated when a Resource is created
-            if (clientResponse.getStatus() == Response.Status.CREATED.getStatusCode()) {
-                jTextField5.setText(clientResponse.getLocation().toString());
-            } else {
-                jTextField5.setText("");
-            }
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

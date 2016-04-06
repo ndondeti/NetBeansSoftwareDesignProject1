@@ -68,4 +68,12 @@ public class Student {
         }
         gradeItems.put(workItemName, null);
     }
+    
+    public float getGradeOfWorkItem(String workItemName){
+        Grade item = gradeItems.get(workItemName);
+        if (item == null) {
+            return 0;
+        }
+        return item.grade;
+    }
 }
