@@ -72,6 +72,18 @@ public class GradeBookClient {
         webResource = client.resource(BASE_URI).path("grade/" + student + "/" + workItem);
         return webResource.delete(ClientResponse.class);
     }
+    
+    public ClientResponse addStudent(String student){
+        WebResource webResource;
+        webResource = client.resource(BASE_URI).path("student/" + student);
+        return webResource.post(ClientResponse.class);
+    }
+    
+    public ClientResponse getStudentTotalScore(String student){
+        WebResource webResource;
+        webResource = client.resource(BASE_URI).path("student/" + student);
+        return webResource.get(ClientResponse.class);
+    }
 
     public void close() {
         LOG.info("Closing the REST Client");

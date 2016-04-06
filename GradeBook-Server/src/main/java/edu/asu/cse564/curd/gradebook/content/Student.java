@@ -17,13 +17,17 @@ public class Student {
     String name;
     HashMap<String, Grade> gradeItems;
 
-    Student(String string) {
+    public Student(String name) {
         this.name = name;
         gradeItems = new HashMap<>();
     }
 
     public void addGradeItem(String gradeItem) {
         this.gradeItems.put(gradeItem, null);
+    }
+    
+    public void resetGradeitem() {
+        this.gradeItems = new HashMap<>();
     }
 
     public void addGrade(Grade gradeItem, String workItem) throws Exception {

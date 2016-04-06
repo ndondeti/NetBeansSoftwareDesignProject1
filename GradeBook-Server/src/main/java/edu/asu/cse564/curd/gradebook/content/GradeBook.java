@@ -20,11 +20,13 @@ public class GradeBook {
 
     private final HashMap<String, Float> gradingItems;
     private static float totalPercentage = 0;
-    private final HashMap<String, Student> students;
+    private HashMap<String, Student> students;
+    private ArrayList<WorkItem> workItems;
 
     public GradeBook() {
         gradingItems = new HashMap<>();
         students = new HashMap<>();
+        workItems = new ArrayList<>();
         students.put("1", new Student("1"));
         students.put("2", new Student("2"));
         students.put("3", new Student("3"));
@@ -39,8 +41,14 @@ public class GradeBook {
             for (Student student : studentList) {
                 student.addGradeItem(workItem.workItemName);
             }
+            workItems.add(workItem);
         } else {
             totalPercentage = 0;
+            workItems = new ArrayList<WorkItem>();
+            List<Student> studentList = new ArrayList(students.values());
+            for (Student student : studentList) {
+                student.resetGradeitem();
+            }
             throw new Exception("Exceeds100");
         }
     }
@@ -86,6 +94,35 @@ public class GradeBook {
             throw new Exception("NoStudent");
         } else {
             student.deleteGrade(workItemName);
+        }
+    }
+
+    public void addStudent(String studentName) throws Exception {
+        if (students.containsKey(studentName)) {
+            throw new Exception("StudentExists");
+        } else {
+            Student s = new Student(studentName);
+            students.put(studentName, s);
+            Student student = students.get(studentName);
+            if (workItems.size() != 0) {
+                for (WorkItem work : workItems) {
+                    student.addGradeItem(work.workItemName);
+                }
+            }
+            
+        }
+    }
+
+    public int getStudentTotalScore(String studentName) throws Exception {
+        if (!students.containsKey(studentName)) {
+            throw new Exception("NoStudent");
+        } else {
+            Student student = students.get(studentName);
+            int totalScore = 0;
+            for (WorkItem work : workItems) {
+                totalScore += (student.getGrade(work.workItemName).grade * (work.percentage) / 100);
+            }
+            return totalScore;
         }
     }
 }

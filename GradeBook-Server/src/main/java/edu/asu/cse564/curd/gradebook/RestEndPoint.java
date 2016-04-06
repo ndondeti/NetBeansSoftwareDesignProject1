@@ -68,7 +68,29 @@ public class RestEndPoint {
             return Response.status(400).entity(e.getMessage()).build();
         }
     }
-
+    
+    @POST
+    @Path("student/{studentName}")
+    public Response addStudent(@PathParam("studentName") String studentName) {
+        try {
+            gradeBook.addStudent(studentName);
+            String success = "Added Student";
+            return Response.status(201).entity(success).build();
+        } catch(Exception e){
+            return Response.status(400).entity(e.getMessage()).build();
+        }
+    }
+    
+    @GET
+    @Path("student/{studentName}")
+    public Response getStudent(@PathParam("studentName") String studentName) {
+        try {
+            int score = gradeBook.getStudentTotalScore(studentName);
+            return Response.status(200).entity(score).build();
+        } catch(Exception e){
+            return Response.status(400).entity(e.getMessage()).build();
+        }
+    }
     @DELETE
     @Path("grade/{studentName}/{workItem}")
     public Response removeGrade(@PathParam("studentName") String studentName,
